@@ -52,7 +52,7 @@ def medianFilter(image, radius, num_samples, threshold):
 
 class FluxLightingAndColor:
     """
-    FluxLightingAndColor Version 1.2
+    FluxLightingAndColor
     画像の照明と色調を調整するためのノードクラス
     
     主な機能:
@@ -211,7 +211,7 @@ class FluxLightingAndColor:
         """
         try:
             if debug_mode:
-                print("\n=== FluxLightingAndColor v1.2 Starting ===")
+                print("\n=== FluxLightingAndColor Starting ===")
                 print(f"Input tensor shape: {image.shape}, dtype: {image.dtype}")
             
             # 1. 入力テンソルをPIL画像に変換
