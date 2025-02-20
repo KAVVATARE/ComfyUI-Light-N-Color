@@ -276,5 +276,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FluxLightingAndColor": "Flux Lighting & Color v1.2"
+    "FluxLightingAndColor": "Flux Lighting & Color"
 }
