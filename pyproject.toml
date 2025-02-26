@@ -1,0 +1,15 @@
+[project]
+name = "light-n-color"
+description = "ComfyUI node that adds Brightness, RGB channels, and Depth of Field to AI-generated image"
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["numpy", "torch", "opencv-python", "pillow"]
+
+[project.urls]
+Repository = "https://github.com/KAVVATARE/ComfyUI-Light-N-Color"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-Light-N-Color"
+Icon = ""
