@@ -62,4 +62,12 @@ git clone https://github.com/yourusername/ComfyUI-Light-N-Color.git</code></pre>
 
 <p>Happy creating! Peace :)</p>
 
+<h2>Update</h2>
+
+<p>2025/08/04</p>
+
+<p>Added auto_analysis mode that automatically adjusts the color and contrast to your own settings.</p>
+
+<p><img src="./img/LightNColor_v2.png" alt="Updated_v2_image"></p>
+
 <p><img src="./img/nodes_include.png" alt="Included Nodes"></p>
