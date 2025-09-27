@@ -49,32 +49,52 @@ class ImageSwitch:
        return (image_1 if use_first else image_2,)
 
 class LatentSwitch:
-   def __init__(self):
-       self.type = "LatentSwitch"
-       print("LatentSwitch initialized")
-       
-   @classmethod
-   def INPUT_TYPES(cls):
-       return {
-           "required": {
-               "latent_1": ("LATENT",),
-               "latent_2": ("LATENT",),
-               "use_first": ("BOOLEAN", {"default": True}),
-           }
-       }
-   
-   RETURN_TYPES = ("LATENT",)
-   RETURN_NAMES = ("latent",)
-   FUNCTION = "switch"
-   CATEGORY = "latent"
-   
-   def switch(self, latent_1, latent_2, use_first):
-       print(f"Switching latents. Using {'first' if use_first else 'second'} latent")
-       print(f"Latent 1 shape: {latent_1['samples'].shape}")
-       print(f"Latent 2 shape: {latent_2['samples'].shape}")
-       result = latent_1 if use_first else latent_2
-       print(f"Result shape: {result['samples'].shape}")
-       return (result,)
+    def __init__(self):
+        self.type = "LatentSwitch"
+        print("LatentSwitch initialized")
+        
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "select": ("INT", {"default": 1, "min": 1, "max": 3}),
+            },
+            "optional": {
+                "latent_1": ("LATENT",),
+                "latent_2": ("LATENT",),
+                "latent_3": ("LATENT",),
+            }
+        }
+    
+    RETURN_TYPES = ("LATENT",)
+    RETURN_NAMES = ("latent",)
+    FUNCTION = "switch"
+    CATEGORY = "latent"
+    
+    def switch(self, select, **kwargs):
+        print(f"Switching latents. Using latent {select}")
+        
+        available_latents = {}
+        for i in range(1, 4): 
+            latent_key = f"latent_{i}"
+            if latent_key in kwargs and kwargs[latent_key] is not None:
+                available_latents[i] = kwargs[latent_key]
+        
+        if not available_latents:
+            raise ValueError("No latent inputs connected")
+        
+        if select in available_latents:
+            result = available_latents[select]
+            if 'samples' in result:
+                print(f"Selected latent {select} shape: {result['samples'].shape}")
+            return (result,)
+        else:
+            fallback_num = min(available_latents.keys())
+            result = available_latents[fallback_num]
+            print(f"Selected latent {select} not available. Using latent {fallback_num} instead")
+            if 'samples' in result:
+                print(f"Fallback latent {fallback_num} shape: {result['samples'].shape}")
+            return (result,)
 
 class FluxSamplerPuLID:
    @classmethod
